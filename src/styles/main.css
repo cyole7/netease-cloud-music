@@ -1,3 +1,5 @@
+@import './vars.css';
+
 html,
 body,
 #app {
@@ -16,7 +18,7 @@ html.dark {
 }
 
 #nprogress .bar {
-  background: rgb(13,148,136);
+  background: var(--color-primary-6);
   opacity: 0.75;
   position: fixed;
   z-index: 1031;
