@@ -1,4 +1,4 @@
-const TOKEN_KEY = 'token'
+export const TOKEN_KEY = 'TOKEN'
 
 export function isLogin() {
   return !!localStorage.getItem(TOKEN_KEY)

@@ -1,3 +1,11 @@
+<script setup lang="ts">
+
+</script>
+
 <template>
-  <RouterView />
+  <NConfigProvider h-full>
+    <NaiveProvider>
+      <RouterView />
+    </NaiveProvider>
+  </NConfigProvider>
 </template>

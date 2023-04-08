@@ -6,12 +6,11 @@ import type {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios'
-import { Message, Notification } from '@arco-design/web-vue'
-import { clearToken, getToken } from '~/utils/auth'
+import { getToken } from '~/utils'
 
 export enum ResultEnum {
   /** 成功 */
-  SUCCESS = 1,
+  SUCCESS = 200,
   /** 失败 */
   ERROR = 0,
   /** token不正确 */
@@ -43,10 +42,7 @@ service.interceptors.request.use(
     return config
   },
   (error: AxiosError) => {
-    Message.error({
-      content: error.message || 'Request Error',
-      duration: 5 * 1000,
-    })
+    message.error(error.message || 'Request Error')
     return Promise.reject(error)
   },
 )
@@ -54,37 +50,25 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    const { code, data, msg } = response.data
+    const { code, msg } = response.data
     const hasSuccess = Reflect.has(response.data, 'code') && code === ResultEnum.SUCCESS
 
     if (hasSuccess)
-      return data
+      return response.data
 
     switch (code) {
       case ResultEnum.TOKEN_ERROR:
       case ResultEnum.NOT_LOGIN:
-        clearToken()
-        break
-      case ResultEnum.NO_PROJECT_AUTH:
-      case ResultEnum.NO_AUTH:
         break
       default:
         break
     }
-    Notification.warning({
-      title: '提示',
-      content: msg || 'Error',
-      closable: true,
-    })
+    message.error(msg || 'Error')
     return Promise.reject(new Error(msg || 'Error'))
   },
   (error: AxiosError) => {
-    if (error.message !== 'canceled') {
-      Message.error({
-        content: error.message || 'Request Error',
-        duration: 5 * 1000,
-      })
-    }
+    if (error.message !== 'canceled')
+      message.error(error.message || 'Request Error')
 
     return Promise.reject(error)
   },
