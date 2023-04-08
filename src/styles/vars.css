@@ -1,4 +1,7 @@
 :root {
   --color-primary-6: #CB3F2D;
   --color-primary-5: #D5614D;
+
+  --header-height: 60px;
+  --footer-height: 60px;
 }

@@ -26,10 +26,9 @@ function go() {
 
     <div py-4 />
 
-    <TheInput
-      v-model="name"
+    <NInput
+      v-model:value="name"
       placeholder="What's your name?"
-      autocomplete="false"
       @keydown.enter="go"
     />
 

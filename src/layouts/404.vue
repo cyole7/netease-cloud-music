@@ -3,15 +3,14 @@ const router = useRouter()
 </script>
 
 <template>
-  <main p="x4 y10" text="center teal-700 dark:gray-200">
-    <div text-4xl>
-      <div i-carbon-warning inline-block />
-    </div>
-    <RouterView />
-    <div>
-      <button btn text-sm m="3 t8" @click="router.back()">
-        Back
-      </button>
-    </div>
+  <main p="y-10" text="center">
+    <NResult status="404" title="404" description="生活总归带点荒谬">
+      <RouterView />
+      <template #footer>
+        <NButton @click="router.back()">
+          返回
+        </NButton>
+      </template>
+    </NResult>
   </main>
 </template>

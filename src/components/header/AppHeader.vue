@@ -5,10 +5,7 @@
     </button>
 
     <a
-      icon-btn i-carbon-logo-github
-      rel="noreferrer"
-      href="https://github.com/cyole/netease-cloud-music"
-      target="_blank"
+      icon-btn i-carbon-logo-github rel="noreferrer" href="https://github.com/cyole/netease-cloud-music" target="_blank"
       title="GitHub"
     />
   </nav>

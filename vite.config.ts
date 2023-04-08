@@ -28,7 +28,9 @@ export default defineConfig({
     }),
 
     // https://github.com/hannoeru/vite-plugin-pages
-    Pages(),
+    Pages({
+      exclude: ['**/components/**', '**/*.ts'],
+    }),
 
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
     Layouts(),

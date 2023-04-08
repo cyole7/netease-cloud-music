@@ -10,13 +10,22 @@ import {
 
 export default defineConfig({
   shortcuts: [
-    ['btn', 'px-4 py-1 rounded inline-block bg-theme text-white cursor-pointer hover:bg-theme-hover disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50'],
-    ['icon-btn', 'text-[0.9em] inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-theme-hover !outline-none'],
+    {
+      'content-padding': 'pt-header pb-footer',
+      'flex-center': 'items-center justify-center',
+    },
   ],
   theme: {
     colors: {
       'theme': 'var(--color-primary-6)',
       'theme-hover': 'var(--color-primary-5)',
+    },
+    height: {
+      header: 'var(--header-height)',
+      footer: 'var(--footer-height)',
+    },
+    boxShadow: {
+      footer: '0px -5px 24px 0px rgba(20, 24, 63, 0.15)',
     },
   },
   presets: [
