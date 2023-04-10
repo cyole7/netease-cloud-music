@@ -17,8 +17,12 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      'theme': 'var(--color-primary-6)',
-      'theme-hover': 'var(--color-primary-5)',
+      theme: {
+        DEFAULT: 'var(--color-theme)',
+        hover: 'var(--color-theme-hover)',
+        active: 'var(--color-theme-active)',
+        disabled: 'var(--color-theme-disabled)',
+      },
     },
     height: {
       header: 'var(--header-height)',

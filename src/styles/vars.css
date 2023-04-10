@@ -1,7 +1,21 @@
 :root {
-  --color-primary-6: #CB3F2D;
-  --color-primary-5: #D5614D;
+  /* 主题色 */
+  --color-theme: #CB3F2D;
+  /* hover */
+  --color-theme-hover: #D5614D;
+  /* active */
+  --color-theme-active: #AB281C;
+  /* disabled */
+  --color-theme-disabled: #EAA795;
 
   --header-height: 60px;
-  --footer-height: 60px;
+  --footer-height: 68px;
+}
+
+/* dark */
+.dark {
+  --color-theme: #D5634F;
+  --color-theme-hover: #CB4C3B;
+  --color-theme-active: #E08773;
+  --color-theme-disabled: #8C1912;
 }

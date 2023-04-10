@@ -31,4 +31,5 @@ export const useUserStore = defineStore('user', () => {
 })
 
 if (import.meta.hot)
+  // typescript 5.0+ acceptHMRUpdate type error
   import.meta.hot.accept(acceptHMRUpdate(useUserStore as any, import.meta.hot))
