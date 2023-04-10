@@ -6,7 +6,7 @@ import Layouts from 'vite-plugin-vue-layouts'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
-import VueMacros from 'unplugin-vue-macros/vite'
+import VueMacros from 'unplugin-vue-macros'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig({
@@ -19,7 +19,7 @@ export default defineConfig({
     devSourcemap: true,
   },
   plugins: [
-    VueMacros({
+    VueMacros.vite({
       plugins: {
         vue: Vue({
           reactivityTransform: true,
