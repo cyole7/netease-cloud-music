@@ -1,5 +1,20 @@
-import { request } from '~/api/interceptor'
+/**
+ * 生成获取二维码的key
+ */
+export function getQrKey() {
+  return request.post<{ data: { unikey: string } }>('/login/qr/key')
+}
 
-export function login(data: unknown) {
-  return request.post('/search/hot', data)
+/**
+ * 生成二维码
+ */
+export function createQrCode(data: { key: string; qrimg: number }) {
+  return request.post<{ data: { qrimg: string; qrurl: string } }>('/login/qr/create', data)
+}
+
+/**
+ * 轮询检查二维码是否扫描
+ */
+export function checkQrCode(data: { key: string }) {
+  return request.post<{ data: { uuid: string } }>('/login/qr/check', data)
 }

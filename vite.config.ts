@@ -50,10 +50,16 @@ export default defineConfig({
             'useLoadingBar',
           ],
         },
+        {
+          'vue-request': [
+            'useRequest',
+          ],
+        },
       ],
       dts: 'types/auto-imports.d.ts',
       dirs: [
-        './src/composables',
+        './src/composables/**',
+        './src/api/**',
       ],
       vueTemplate: true,
     }),

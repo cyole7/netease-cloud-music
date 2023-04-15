@@ -23,13 +23,13 @@ export enum ResultEnum {
   NO_AUTH = 1004,
 }
 
-const service: AxiosInstance = axios.create({
+const instance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 60 * 1000,
 })
 
 // 请求拦截器
-service.interceptors.request.use(
+instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = getToken()
 
@@ -48,13 +48,13 @@ service.interceptors.request.use(
 )
 
 // 响应拦截器
-service.interceptors.response.use(
+instance.interceptors.response.use(
   (response: AxiosResponse) => {
-    const { code, msg } = response.data
+    const { code, msg, ...data } = response.data
     const hasSuccess = Reflect.has(response.data, 'code') && code === ResultEnum.SUCCESS
 
     if (hasSuccess)
-      return response.data
+      return data
 
     switch (code) {
       case ResultEnum.TOKEN_ERROR:
@@ -76,18 +76,18 @@ service.interceptors.response.use(
 
 export const request = {
   get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    return service.get(url, config)
+    return instance.get(url, config)
   },
 
   post<T>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
-    return service.post(url, data, config)
+    return instance.post(url, data, config)
   },
 
   put<T>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
-    return service.put(url, data, config)
+    return instance.put(url, data, config)
   },
 
   delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    return service.delete(url, config)
+    return instance.delete(url, config)
   },
 }

@@ -11,5 +11,6 @@ import { darkThemeOverrides, themeOverrides } from './constants'
   >
     <RouterView />
     <NGlobalStyle />
+    <ModalContainer />
   </NConfigProvider>
 </template>
