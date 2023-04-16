@@ -2,19 +2,21 @@
 const loading = ref(false)
 const qrCodeImg = ref('')
 const statusCode = ref(0)
-let pause: () => void
+let pause = () => {}
+
+const controller = new AbortController()
 
 async function handleLogin() {
   try {
     loading.value = true
 
-    const { data: { unikey } } = await getQrKey()
-    const { data: { qrimg } } = await createQrCode({ key: unikey, qrimg: 1 })
+    const { data: { unikey } } = await getQrKey({ signal: controller.signal })
+    const { data: { qrimg } } = await createQrCode({ key: unikey, qrimg: true }, { signal: controller.signal })
 
     qrCodeImg.value = qrimg
 
     pause = useIntervalFn(async () => {
-      const { code, cookie } = await checkQrCode({ key: unikey })
+      const { code, cookie } = await checkQrCode({ key: unikey }, { signal: controller.signal })
 
       statusCode.value = code
 
@@ -36,6 +38,11 @@ function handleLoginSuccess(cookie: string) {
 
   isLoginDialogOpen.value = false
 }
+
+watchEffect(() => {
+  if (!isLoginDialogOpen.value)
+    controller.abort()
+})
 
 onMounted(() => {
   handleLogin()

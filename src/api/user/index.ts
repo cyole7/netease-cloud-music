@@ -1,27 +1,23 @@
+import type { AxiosRequestConfig } from 'axios'
+import type { QrImageCheckRes, QrImageParams, QrImageRes } from './types'
+
 /**
  * 生成获取二维码的key
  */
-export function getQrKey() {
-  return request.post<{ data: { unikey: string } }>('/login/qr/key')
+export function getQrKey(config?: AxiosRequestConfig) {
+  return request.post<{ data: { unikey: string } }>('/login/qr/key', {}, config)
 }
 
 /**
  * 生成二维码
  */
-export function createQrCode(data: { key: string; qrimg: number }) {
-  return request.post<{ data: { qrimg: string; qrurl: string } }>('/login/qr/create', data)
+export function createQrCode(data: QrImageParams, config?: AxiosRequestConfig) {
+  return request.post<{ data: QrImageRes }>('/login/qr/create', data, config)
 }
 
 /**
  * 轮询检查二维码是否扫描
  */
-export function checkQrCode(data: { key: string }) {
-  return request.post<{ code: number; cookie: string; message: string }>('/login/qr/check', data)
-}
-
-/**
- * 获取用户信息
- */
-export function getUserInfo() {
-  return request.post('/user/subcount')
+export function checkQrCode(data: { key: string }, config?: AxiosRequestConfig) {
+  return request.post<QrImageCheckRes>('/login/qr/check', data, config)
 }
