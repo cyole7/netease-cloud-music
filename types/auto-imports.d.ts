@@ -15,6 +15,7 @@ declare global {
   const ResultEnum: typeof import('../src/api/interceptor')['ResultEnum']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
+  const checkLoginStatus: typeof import('../src/api/user/index')['checkLoginStatus']
   const checkQrCode: typeof import('../src/api/user/index')['checkQrCode']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
@@ -43,6 +44,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getQrKey: typeof import('../src/api/user/index')['getQrKey']
+  const getUserInfo: typeof import('../src/api/user/index')['getUserInfo']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -314,6 +316,7 @@ declare module 'vue' {
     readonly ResultEnum: UnwrapRef<typeof import('../src/api/interceptor')['ResultEnum']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly checkLoginStatus: UnwrapRef<typeof import('../src/api/user/index')['checkLoginStatus']>
     readonly checkQrCode: UnwrapRef<typeof import('../src/api/user/index')['checkQrCode']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -342,6 +345,7 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getQrKey: UnwrapRef<typeof import('../src/api/user/index')['getQrKey']>
+    readonly getUserInfo: UnwrapRef<typeof import('../src/api/user/index')['getUserInfo']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>

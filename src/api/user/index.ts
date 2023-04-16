@@ -16,5 +16,12 @@ export function createQrCode(data: { key: string; qrimg: number }) {
  * 轮询检查二维码是否扫描
  */
 export function checkQrCode(data: { key: string }) {
-  return request.post<{ data: { uuid: string } }>('/login/qr/check', data)
+  return request.post<{ code: number; cookie: string; message: string }>('/login/qr/check', data)
+}
+
+/**
+ * 获取用户信息
+ */
+export function getUserInfo() {
+  return request.post('/user/subcount')
 }
