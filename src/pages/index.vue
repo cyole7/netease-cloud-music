@@ -4,6 +4,7 @@
 <template>
   <div>
     首页
+    修复2
     <NButton @click="openLoginDialog()">
       登录
     </NButton>
