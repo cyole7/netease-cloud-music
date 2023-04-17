@@ -1,4 +1,4 @@
-import axios, { AxiosHeaders } from 'axios'
+import axios from 'axios'
 import type {
   AxiosError,
   AxiosInstance,
@@ -6,30 +6,13 @@ import type {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios'
-import { getToken } from '~/utils'
-
-export enum ResultEnum {
-  /** 成功 */
-  SUCCESS = 200,
-  /** 失败 */
-  ERROR = 0,
-  /** 未登录 */
-  NOT_LOGIN = 302,
-  /** 二维码过期 */
-  QR_CODE_EXPIRED = 800,
-  /** 等待扫码 */
-  WAITING_FOR_SCAN = 801,
-  /** 待确认 */
-  WAITING_FOR_CONFIRM = 802,
-  /** 授权登录成功 */
-  AUTHORIZED_LOGIN_SUCCESS = 803,
-}
+import { ResultCode } from '~/constants'
 
 const ignoreCodeList = [
-  ResultEnum.QR_CODE_EXPIRED,
-  ResultEnum.WAITING_FOR_SCAN,
-  ResultEnum.WAITING_FOR_CONFIRM,
-  ResultEnum.AUTHORIZED_LOGIN_SUCCESS,
+  ResultCode.QR_CODE_EXPIRED,
+  ResultCode.WAITING_FOR_SCAN,
+  ResultCode.WAITING_FOR_CONFIRM,
+  ResultCode.AUTHORIZED_LOGIN_SUCCESS,
 ]
 
 const instance: AxiosInstance = axios.create({
@@ -41,21 +24,15 @@ const instance: AxiosInstance = axios.create({
 // 请求拦截器
 instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token = getToken()
+    const cookie = getUserCookie()
 
-    if (token) {
-      if (!config.headers)
-        config.headers = new AxiosHeaders()
-
-      config.headers.Authorization = `Bearer ${token}`
-    }
-
-    config.url = `${config.url}${config.url?.includes('?') ? '&' : '?'}timestamp=${useTimestamp().value}`
+    if (cookie)
+      config.data = { ...config.data, cookie }
 
     return config
   },
   (error: AxiosError) => {
-    message.error(error.message || 'Request Error')
+    NMessage.error(error.message || 'Request Error')
     return Promise.reject(error)
   },
 )
@@ -65,25 +42,25 @@ instance.interceptors.response.use(
   (response: AxiosResponse) => {
     const { code, msg } = response.data
     const hasSuccess = Reflect.has(response.data, 'code') && (
-      code === ResultEnum.SUCCESS || ignoreCodeList.includes(code)
+      code === ResultCode.SUCCESS || ignoreCodeList.includes(code)
     )
 
     if (hasSuccess)
       return response.data
 
     switch (code) {
-      case ResultEnum.NOT_LOGIN:
-        isLoginDialogOpen.value = true
+      case ResultCode.NOT_LOGIN:
+        openLoginDialog()
         break
       default:
         break
     }
-    message.error(msg || 'Error')
+    NMessage.error(msg || 'Error')
     return Promise.reject(new Error(msg || 'Error'))
   },
   (error: AxiosError) => {
     if (error.message !== 'canceled')
-      message.error(error.message || 'Request Error')
+      NMessage.error(error.message || 'Request Error')
 
     return Promise.reject(error)
   },

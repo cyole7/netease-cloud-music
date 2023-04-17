@@ -15,13 +15,13 @@ export const install: UserModule = (app) => {
 }
 
 router.beforeEach(() => {
-  loadingBar.start()
+  NLoadingBar.start()
 })
 
 router.afterEach(() => {
-  loadingBar.finish()
+  NLoadingBar.finish()
 })
 
 router.onError(() => {
-  loadingBar.error()
+  NLoadingBar.error()
 })

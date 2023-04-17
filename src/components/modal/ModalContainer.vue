@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isLoginDialogOpen } from '~/composables/modal'
+import { isLoginDialogOpen } from '~/composables/dialog'
 </script>
 
 <template>

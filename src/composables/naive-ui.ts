@@ -10,4 +10,9 @@ const { message, notification, dialog, loadingBar } = createDiscreteApi(
   },
 )
 
-export { message, dialog, notification, loadingBar }
+export {
+  message as NMessage,
+  notification as NNotification,
+  dialog as NDialog,
+  loadingBar as NLoadingBar,
+}
