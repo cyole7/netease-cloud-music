@@ -4,9 +4,7 @@ import { isLoginDialogOpen } from '~/composables/modal'
 
 <template>
   <!-- 登录弹窗 -->
-  <NModal
-    v-model:show="isLoginDialogOpen"
-  >
+  <NModal v-model:show="isLoginDialogOpen">
     <LoginDialog />
   </NModal>
 </template>
