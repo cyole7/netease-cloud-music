@@ -28,7 +28,3 @@ export function checkQrCode(data: { key: string }, config?: AxiosRequestConfig) 
 export function logout() {
   return request.post('/logout')
 }
-
-export function getInfoTest() {
-  return request.post('/user/subcount', {}, { noCache: true })
-}

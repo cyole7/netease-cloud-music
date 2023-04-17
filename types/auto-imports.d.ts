@@ -47,7 +47,6 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
-  const getInfoTest: typeof import('../src/api/user/index')['getInfoTest']
   const getQrKey: typeof import('../src/api/user/index')['getQrKey']
   const getUserCookie: typeof import('../src/composables/auth')['getUserCookie']
   const h: typeof import('vue')['h']
@@ -357,7 +356,6 @@ declare module 'vue' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
-    readonly getInfoTest: UnwrapRef<typeof import('../src/api/user/index')['getInfoTest']>
     readonly getQrKey: UnwrapRef<typeof import('../src/api/user/index')['getQrKey']>
     readonly getUserCookie: UnwrapRef<typeof import('../src/composables/auth')['getUserCookie']>
     readonly h: UnwrapRef<typeof import('vue')['h']>

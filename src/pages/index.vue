@@ -2,10 +2,6 @@
 function login() {
   isLoginDialogOpen.value = true
 }
-
-onMounted(async () => {
-  await getInfoTest()
-})
 </script>
 
 <template>
