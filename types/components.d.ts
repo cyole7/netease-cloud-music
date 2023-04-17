@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     LoginDialog: typeof import('./../src/components/login/LoginDialog.vue')['default']
     ModalContainer: typeof import('./../src/components/modal/ModalContainer.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
+    NCalendar: typeof import('naive-ui')['NCalendar']
     NCard: typeof import('naive-ui')['NCard']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NGlobalStyle: typeof import('naive-ui')['NGlobalStyle']

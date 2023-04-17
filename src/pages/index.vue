@@ -7,7 +7,7 @@ function login() {
 <template>
   <div>
     首页
-    <NButton test-a="1" @click="login">
+    <NButton @click="login">
       登录
     </NButton>
     <NButton @click="logout">
