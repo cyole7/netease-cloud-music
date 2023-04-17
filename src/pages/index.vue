@@ -4,7 +4,6 @@
 <template>
   <div>
     首页
-    1
     <NButton @click="openLoginDialog()">
       登录
     </NButton>
