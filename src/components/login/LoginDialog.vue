@@ -14,13 +14,15 @@ async function handleLogin() {
   try {
     loading.value = true
 
-    const { data: { unikey } } = await getQrKey({ signal: controller.signal })
-    const { data: { qrimg } } = await createQrCode({ key: unikey, qrimg: true }, { signal: controller.signal })
+    const axiosConfig = { signal: controller.signal, noCache: true }
+
+    const { data: { unikey } } = await getQrKey(axiosConfig)
+    const { data: { qrimg } } = await createQrCode({ key: unikey, qrimg: true }, axiosConfig)
 
     qrCodeImg.value = qrimg
 
     pause = useIntervalFn(async () => {
-      const { code, cookie } = await checkQrCode({ key: unikey }, { signal: controller.signal })
+      const { code, cookie } = await checkQrCode({ key: unikey }, axiosConfig)
 
       statusCode.value = code
 

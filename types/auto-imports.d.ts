@@ -47,6 +47,7 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getInfoTest: typeof import('../src/api/user/index')['getInfoTest']
   const getQrKey: typeof import('../src/api/user/index')['getQrKey']
   const getUserCookie: typeof import('../src/composables/auth')['getUserCookie']
   const h: typeof import('vue')['h']
@@ -60,6 +61,7 @@ declare global {
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const logout: typeof import('../src/api/user/index')['logout']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const markRaw: typeof import('vue')['markRaw']
   const nextTick: typeof import('vue')['nextTick']
@@ -355,6 +357,7 @@ declare module 'vue' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getInfoTest: UnwrapRef<typeof import('../src/api/user/index')['getInfoTest']>
     readonly getQrKey: UnwrapRef<typeof import('../src/api/user/index')['getQrKey']>
     readonly getUserCookie: UnwrapRef<typeof import('../src/composables/auth')['getUserCookie']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
@@ -368,6 +371,7 @@ declare module 'vue' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly logout: UnwrapRef<typeof import('../src/api/user/index')['logout']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>

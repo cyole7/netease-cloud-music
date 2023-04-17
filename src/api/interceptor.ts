@@ -24,10 +24,11 @@ const instance: AxiosInstance = axios.create({
 // 请求拦截器
 instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const cookie = getUserCookie()
-
-    if (cookie)
-      config.data = { ...config.data, cookie }
+    if (config.noCache) {
+      config.url = config.url?.includes('?')
+        ? `${config.url}&timestamp=${useTimestamp().value}`
+        : `${config.url}?timestamp=${useTimestamp().value}`
+    }
 
     return config
   },
@@ -40,8 +41,9 @@ instance.interceptors.request.use(
 // 响应拦截器
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
-    const { code, msg } = response.data
-    const hasSuccess = Reflect.has(response.data, 'code') && (
+    let { code, msg } = response.data
+    // 部分接口code位置不同
+    const hasSuccess = !Reflect.has(response.data, 'code') || (
       code === ResultCode.SUCCESS || ignoreCodeList.includes(code)
     )
 
@@ -50,6 +52,7 @@ instance.interceptors.response.use(
 
     switch (code) {
       case ResultCode.NOT_LOGIN:
+        msg = '请先登录'
         openLoginDialog()
         break
       default:
